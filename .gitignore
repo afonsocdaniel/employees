@@ -23,3 +23,5 @@ frontend/yarn-error.log*
 kajabi-backend/tmp/
 kajabi-backend/log/
 kajabi-backend/Dockerfile.rails
+kajabi-backend/.byebug_history
+kajabi-backend/storage/*
