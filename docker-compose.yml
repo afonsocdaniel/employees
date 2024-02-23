@@ -7,6 +7,8 @@ services:
     ports:
       - 3000:3000
     command: npm run start
+    volumes:
+      - ./frontend:/home/app/
   api:
     stdin_open: true
     tty: true
