@@ -1,5 +1,5 @@
 module EmployeeManagement
-  class FetchAll < ActiveInteraction::Base
+  class FetchEmployees < ActiveInteraction::Base
     integer :page, default: 1
     integer :per_page, default: 10
 

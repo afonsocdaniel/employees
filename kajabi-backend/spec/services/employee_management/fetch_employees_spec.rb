@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-describe EmployeeManagement::FetchAll do
+describe EmployeeManagement::FetchEmployees do
   describe "default pagination" do
     subject(:outcome) { described_class.run }
 
