@@ -12,6 +12,13 @@ module Api
     end
 
     def show
+      outcome = EmployeeManagement::FetchEmployee.run(id: params[:id])
+
+      if outcome.result.present?
+        @employee = outcome.result[:data]
+      else
+        render json: { error: "Employee not found!" }, status: :not_found
+      end
     end
   end
 end

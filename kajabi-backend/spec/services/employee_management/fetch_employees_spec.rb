@@ -24,7 +24,7 @@ describe EmployeeManagement::FetchEmployees do
     end
 
     it "returns pagination metadata" do
-      VCR.use_cassette("employees") do
+      VCR.use_cassette("employees_with_pagination") do
         data = outcome.result
         expect(data[:page]).to eq(1)
         expect(data[:per_page]).to eq(2)
