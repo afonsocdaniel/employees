@@ -22,3 +22,4 @@ front_end/yarn-error.log*
 # back-end
 kajabi-backend/tmp/
 kajabi-backend/log/
+kajabi-backend/Dockerfile.rails
