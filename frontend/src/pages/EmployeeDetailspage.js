@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Layout, Breadcrumb, Avatar, Col, Row, Divider, Descriptions, Result, Button, theme } from 'antd';
+import { Layout, Breadcrumb, Avatar, Col, Row, Divider, Descriptions, Result, Button } from 'antd';
+import Header from '../components/Header';
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 const EmployeeNotFound = () => {
   const navigate = useNavigate();
@@ -19,8 +20,8 @@ const EmployeeNotFound = () => {
 }
 
 const EmployeeDetailspage = () => {
-  const { token: { colorBgContainer }, } = theme.useToken();
   const params = useParams();
+  const navigate = useNavigate();
   const [employeeInfo, setEmployeeInfo] = useState({});
 
   useEffect(() => {
@@ -40,12 +41,12 @@ const EmployeeDetailspage = () => {
 
   return (
     <Layout>
-      <Header style={{ background: colorBgContainer }} />
+      <Header />
 
       <Content>
         <Breadcrumb
           separator=">"
-          items={[ { title: 'Employees', href: '/', }, { title: employeeInfo.first_name }]}
+          items={[ { title: 'Employees', href: '/', onClick: () => navigate('/') }, { title: employeeInfo.first_name }]}
         />
 
         <Divider />
