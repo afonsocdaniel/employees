@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import { Layout, Card, Col, Row, Pagination, Space, Divider } from 'antd';
+import { useEmployeeList } from '../actions/useEmployee';
+import { Layout, Card, Col, Row, Pagination, Space, Divider, Spin } from 'antd';
 import Header from '../components/Header';
 
 const { Content } = Layout;
@@ -10,22 +11,13 @@ const { Meta } = Card;
 const EmployeesListPage = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const [employeePerPage, setEmployeePerPage] = useState(0);
-  const [totalEmployees, setTotalEmployees] = useState(0);
-  const [employees, setEmployees] = useState([]);
 
-  useEffect(() => {
-    const loadEmployees = async () => {
-      const res = await fetch(`http://localhost:5001/api/employees.json?page=${currentPage}&per_page=8`);
-      const json = await res.json();
+  const {
+    data = { employees: [] , pagination: { } },
+    isLoading
+  } = useEmployeeList({ currentPage: currentPage });
 
-      setTotalEmployees(json.pagination.total);
-      setEmployeePerPage(json.pagination.per_page);
-      setEmployees(json.employees);
-    };
-
-    loadEmployees();
-  }, [currentPage]);
+  if (isLoading) { return <Spin />; }
 
   return (
     <Layout>
@@ -38,9 +30,9 @@ const EmployeesListPage = () => {
               <Pagination
                 onChange={(pageNumber) => setCurrentPage(pageNumber)}
                 defaultCurrent={currentPage}
-                pageSize={employeePerPage}
-                total={totalEmployees}
-                showTotal={(total) => `Total ${totalEmployees} employees`}
+                pageSize={data.pagination.per_page}
+                total={data.pagination.total}
+                showTotal={(total) => `Total ${data.pagination.total} employees`}
               />
             </Space>
           </Col>
@@ -49,7 +41,7 @@ const EmployeesListPage = () => {
         <Divider />
 
         <Row gutter={[16, 16]}>
-          {employees.map((employee) => (
+          {data.employees.map((employee) => (
             <Col span={6} key={employee.id}>
               <Card
                 onClick={() => navigate(`/employees/${employee.id}`)}

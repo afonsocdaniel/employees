@@ -43,6 +43,8 @@ docker-compose run --rm api bundle exec rspec
 - [x] Add `Antd` UI Library to build the page
 - [x] Add VCR to help with request tests using real data
 - [x] Create services responsible to fetch employees data in the back-end
+- [x] Improve UI error handling and loading state using react query
 - [ ] Configure cypress to test the UI
+- [ ] Configure cache in the query client (react query)
 - [ ] Configure CI
 - [ ] Deploy to Heroku

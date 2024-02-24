@@ -17,6 +17,7 @@ const Header = () => {
         mode="horizontal"
         defaultSelectedKeys={['2']}
         style={{ flex: 1, minWidth: 0, }}
+        items={[]}
       />
     </Layout.Header>
   )

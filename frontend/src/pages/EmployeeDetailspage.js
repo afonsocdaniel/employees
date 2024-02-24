@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Layout, Breadcrumb, Avatar, Col, Row, Divider, Descriptions, Result, Button } from 'antd';
+import { useEmployeeDetails } from '../actions/useEmployee';
+import { Layout, Breadcrumb, Avatar, Col, Row, Divider, Descriptions, Result, Button, Spin } from 'antd';
 import Header from '../components/Header';
 
 const { Content } = Layout;
@@ -22,22 +23,14 @@ const EmployeeNotFound = () => {
 const EmployeeDetailspage = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const [employeeInfo, setEmployeeInfo] = useState({});
+  const {
+    data = { employee: {} },
+    isLoading,
+    error
+  } = useEmployeeDetails({ employeeID: params.id });
 
-  useEffect(() => {
-    const loadEmployeeData = async () => {
-      const res = await fetch(`http://localhost:5001/api/employees/${params.id}.json`);
-
-      if (res.status !== 200) { return setEmployeeInfo(null); };
-
-      const json = await res.json();
-      setEmployeeInfo(json.employee);
-    };
-
-    loadEmployeeData();
-  }, [params.id]);
-
-  if (!employeeInfo) { return <EmployeeNotFound />; }
+  if (isLoading) { return <Spin />; }
+  if (error) { return <EmployeeNotFound />; }
 
   return (
     <Layout>
@@ -46,7 +39,7 @@ const EmployeeDetailspage = () => {
       <Content>
         <Breadcrumb
           separator=">"
-          items={[ { title: 'Employees', href: '/', onClick: () => navigate('/') }, { title: employeeInfo.first_name }]}
+          items={[ { title: 'Employees', href: '/', onClick: () => navigate('/') }, { title: data.employee.first_name }]}
         />
 
         <Divider />
@@ -54,11 +47,11 @@ const EmployeeDetailspage = () => {
         <Row gutter={[16, 16]}>
           <Col span={16}>
             <Descriptions title="Employee Info" bordered size={'small'}>
-              <Descriptions.Item label="Profile Picture"><Avatar size={64} src={employeeInfo.avatar}/></Descriptions.Item>
-              <Descriptions.Item label="First Name">{employeeInfo.first_name}</Descriptions.Item>
-              <Descriptions.Item label="Last Name">{employeeInfo.last_name}</Descriptions.Item>
-              <Descriptions.Item label="Email">{employeeInfo.email}</Descriptions.Item>
-              <Descriptions.Item label="ID">#{employeeInfo.id}</Descriptions.Item>
+              <Descriptions.Item label="Profile Picture"><Avatar size={64} src={data.employee.avatar}/></Descriptions.Item>
+              <Descriptions.Item label="First Name">{data.employee.first_name}</Descriptions.Item>
+              <Descriptions.Item label="Last Name">{data.employee.last_name}</Descriptions.Item>
+              <Descriptions.Item label="Email">{data.employee.email}</Descriptions.Item>
+              <Descriptions.Item label="ID">#{data.employee.id}</Descriptions.Item>
             </Descriptions>
           </Col>
         </Row>
