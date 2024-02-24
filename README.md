@@ -43,3 +43,4 @@ docker-compose run --rm api bundle exec rspec
 - [x] Add VCR to help with request tests using real data
 - [x] Create services responsible to fetch employees data in the back-end
 - [] Configure cypress to test the UI
+- [] Configure CI
