@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import { useEmployeeList } from '../actions/useEmployee';
-import { Layout, Card, Col, Row, Pagination, Space, Divider, Spin, message } from 'antd';
+import { Layout, Card, Col, Row, Pagination, Space, Divider, Spin } from 'antd';
 import Header from '../components/Header';
 
 const { Content } = Layout;
@@ -15,11 +15,7 @@ const EmployeesListPage = () => {
   const {
     data = { employees: [] , pagination: { } },
     isLoading
-  } = useEmployeeList({
-    currentPage: currentPage,
-    onSuccess: (_) => message.error("Success loading employees list"),
-    onError: () => message.error("Something went wrong"),
-  });
+  } = useEmployeeList({ currentPage: currentPage });
 
   if (isLoading) { return <Spin />; }
 
