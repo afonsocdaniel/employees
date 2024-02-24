@@ -2,6 +2,9 @@
 
 This project contains a `/frontend` folder and `/backend` folder with the rails API configured.
 
+<img width="1045" alt="Screenshot 2024-02-24 at 01 25 58" src="https://github.com/afonsocdaniel/employees/assets/1382338/7ef76750-37fa-4ade-87b3-affda29e0f34">
+
+
 # Table of contents
 
 - [Install](#install)
