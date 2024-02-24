@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import { Layout, Card, Col, Row, Pagination, Space, theme } from 'antd';
 
@@ -7,6 +8,7 @@ const { Meta } = Card;
 
 const EmployeesListPage = () => {
   const { token: { colorBgContainer }, } = theme.useToken();
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [employeePerPage, setEmployeePerPage] = useState(0);
   const [totalEmployees, setTotalEmployees] = useState(0);
@@ -34,7 +36,7 @@ const EmployeesListPage = () => {
           {employees.map((employee) => (
             <Col span={6} key={employee.id}>
               <Card
-                onClick={() => { console.log(employee.id) }}
+                onClick={() => navigate(`/employees/${employee.id}`)}
                 hoverable
                 cover={<img alt={employee.first_name} src={employee.avatar} />}
               >
