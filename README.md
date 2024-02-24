@@ -22,8 +22,9 @@ There is no need to something locally, only start the docker daemon. Docker comp
 docker-compose up
 ```
 
-Visit page website: http://localhost:3000/
-API health check: http://localhost:5001/up
+**Visit page website:** http://localhost:3000/
+
+**API health check:** http://localhost:5001/up
 
 ## Running the tests
 
@@ -42,6 +43,6 @@ docker-compose run --rm api bundle exec rspec
 - [x] Add `Antd` UI Library to build the page
 - [x] Add VCR to help with request tests using real data
 - [x] Create services responsible to fetch employees data in the back-end
-- [] Configure cypress to test the UI
-- [] Configure CI
-- [] Deploy to Heroku
+- [ ] Configure cypress to test the UI
+- [ ] Configure CI
+- [ ] Deploy to Heroku
