@@ -31,7 +31,7 @@ docker-compose up
 It's never too early to begin running unit tests. Tests are run using [RSpec](https://github.com/rspec/rspec-rails) testing framework and lives in the /spec folder. To run the tests:
 
 ```
-docker-compose run --rm api bundle exec rspec
+docker-compose run --rm -e RAILS_ENV=test api bundle exec rspec
 ```
 
 ## Todos
