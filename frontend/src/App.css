@@ -1,5 +1,21 @@
+.demo-logo {
+  min-width: 120px;
+  background: rgba(255, 255, 255, .2);
+  border-radius: 6px;
+  margin-inline-end: 24px;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 32px;
+  padding: 5px 15px;
+}
+
 .ant-layout-content {
   min-height: 100vh;
+}
+
+body {
+  margin: 0;
 }
 
 main {

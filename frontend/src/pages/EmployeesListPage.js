@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import { Layout, Card, Col, Row, Pagination, Space, theme } from 'antd';
+import { Layout, Card, Col, Row, Pagination, Space, Divider } from 'antd';
+import Header from '../components/Header';
 
-const { Header, Footer, Content } = Layout;
+const { Content } = Layout;
 const { Meta } = Card;
 
 const EmployeesListPage = () => {
-  const { token: { colorBgContainer }, } = theme.useToken();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [employeePerPage, setEmployeePerPage] = useState(0);
@@ -29,9 +29,25 @@ const EmployeesListPage = () => {
 
   return (
     <Layout>
-      <Header style={{ background: colorBgContainer }} />
+      <Header />
 
       <Content>
+        <Row gutter={[16, 16]}>
+          <Col span={24}>
+            <Space align='center' direction='vertical' style={{ width: '100%' }}>
+              <Pagination
+                onChange={(pageNumber) => setCurrentPage(pageNumber)}
+                defaultCurrent={currentPage}
+                pageSize={employeePerPage}
+                total={totalEmployees}
+                showTotal={(total) => `Total ${totalEmployees} employees`}
+              />
+            </Space>
+          </Col>
+        </Row>
+
+        <Divider />
+
         <Row gutter={[16, 16]}>
           {employees.map((employee) => (
             <Col span={6} key={employee.id}>
@@ -48,18 +64,6 @@ const EmployeesListPage = () => {
             </Col>
           ))}
         </Row>
-
-        <Footer>
-          <Space align='center' direction='vertical' style={{ width: '100%' }}>
-            <Pagination
-              onChange={(pageNumber) => setCurrentPage(pageNumber)}
-              defaultCurrent={currentPage}
-              pageSize={employeePerPage}
-              total={totalEmployees}
-              showTotal={(total) => `Total ${totalEmployees} employees`}
-            />
-          </Space>
-        </Footer>
       </Content>
     </Layout>
   );
