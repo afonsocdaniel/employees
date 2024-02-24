@@ -44,3 +44,4 @@ docker-compose run --rm api bundle exec rspec
 - [x] Create services responsible to fetch employees data in the back-end
 - [] Configure cypress to test the UI
 - [] Configure CI
+- [] Deploy to Heroku
