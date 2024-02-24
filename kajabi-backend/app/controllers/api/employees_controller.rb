@@ -8,7 +8,8 @@ module Api
 
       @employees = outcome.result[:data]
       @page = outcome.result[:page]
-      @total_pages = outcome.result[:total_pages]
+      @total = outcome.result[:total]
+      @per_page = outcome.result[:per_page]
     end
 
     def show

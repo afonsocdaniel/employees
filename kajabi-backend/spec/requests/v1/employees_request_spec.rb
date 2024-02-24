@@ -26,8 +26,9 @@ describe "Employee API", type: :request do
         get "/api/employees", params: { 'page' => 1, 'per_page' => per_page }
 
         expect(response).to have_http_status(:success)
-        expect(response_body["page"]).to eql(1)
-        expect(response_body["total_pages"]).to eql(6)
+        expect(response_body["pagination"]["page"]).to eql(1)
+        expect(response_body["pagination"]["total"]).to eql(12)
+        expect(response_body["pagination"]["per_page"]).to eql(2)
       end
     end
   end
