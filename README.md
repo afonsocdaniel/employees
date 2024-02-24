@@ -10,11 +10,12 @@ This project contains a `/frontend` folder and `/backend` folder with the rails 
 - [Todos](#todos)
 
 ## Install
+
+You have start the docker daemon. Docker compose will run the front-end and the back-end at the same time for you.
+
 ```
 docker-compose build
 ```
-
-There is no need to something locally, only start the docker daemon. Docker compose will run the front-end and the back-end at the same time.
 
 ## Usage
 
